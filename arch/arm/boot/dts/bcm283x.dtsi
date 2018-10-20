@@ -77,8 +77,8 @@
 				     <1 22>,
 				     <1 23>,
 				     <1 24>,
-				     <1 25>,
-				     <1 26>,
+				     //<1 25>,
+				     //<1 26>,
 				     /* dma channel 11-14 share one irq */
 				     <1 27>,
 				     <1 27>,
@@ -95,8 +95,8 @@
 					  "dma6",
 					  "dma7",
 					  "dma8",
-					  "dma9",
-					  "dma10",
+					  //"dma9",
+					  //"dma10",
 					  "dma11",
 					  "dma12",
 					  "dma13",
@@ -405,6 +405,19 @@
 			dma-names = "tx", "rx";
 			status = "disabled";
 		};
+
+                tdm: tdm@7e203000 {
+                        compatible = "brcm,pi-tdm";
+                        reg = <0x7e203000 0x20>,
+                              <0x7e101098 0x02>;
+
+                        dmas = <&dma 2>,
+                               <&dma 3>;
+                        dma-names = "tx", "rx";
+                        interrupts = <1 25>, <1 26>;
+                        interrupt-names = "dma9", "dma10";
+                        status = "okay";
+                };
 
 		spi: spi@7e204000 {
 			compatible = "brcm,bcm2835-spi";
